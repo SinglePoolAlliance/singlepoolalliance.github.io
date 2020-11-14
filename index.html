@@ -26,10 +26,27 @@
         </div>
     </nav>
     <main class="page landing-page">
-        <section class="clean-block clean-hero" style="background: url(&quot;/assets/img/blockchain-network-810x476.jpg&quot;) no-repeat;color: rgba(53,109,194,0.69);background-size: cover;">
+        <section class="d-lg-flex flex-column clean-block clean-hero" style="background: url(&quot;/assets/img/blockchain-network-810x476.jpg&quot;) no-repeat;color: rgba(53,109,194,0.69);background-size: cover;">
             <div class="text">
                 <h2>Cardano Single Pool Alliance</h2>
             </div>
+            <div class="text"><script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+$.getJSON('https://raw.githubusercontent.com/SinglePoolAlliance/Registration/master/registry.json', function(data) { 
+ //    data.sort(function(a, b) {
+ //       return a.poolId.localeCompare(b.poolId)
+ //   });
+    
+    $.each(data, function(key, value) {
+        $("#list").append("<a style='color: inherit;' target='_blank' href='https:/adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(0, 0, 0, 0.4)' ><tr><th>" + value.ticker + "</tr></th></table></a>");
+    });        
+});
+</script>
+
+<div id="list" style='flex-direction: row  ; flex-wrap: wrap; display: flex; align-items: center;'> </div>
+
+</div>
         </section>
         <section class="clean-block clean-info dark">
             <div class="container d-flex flex-column justify-content-center" style="max-width: 1671px;">

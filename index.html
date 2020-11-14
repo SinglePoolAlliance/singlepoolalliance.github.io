@@ -32,8 +32,26 @@
             </div>
             <div class="text"><script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+function shuffle (array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
 
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
 $.getJSON('https://raw.githubusercontent.com/SinglePoolAlliance/Registration/master/registry.json', function(data) { 
+    shuffle(data)
  //    data.sort(function(a, b) {
  //       return a.poolId.localeCompare(b.poolId)
  //   });

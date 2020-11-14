@@ -39,7 +39,7 @@ $.getJSON('https://raw.githubusercontent.com/SinglePoolAlliance/Registration/mas
  //   });
     
     $.each(data, function(key, value) {
-        $("#list").append("<a style='color: inherit;' target='_blank' href='https:/adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(0, 0, 0, 0.4)' ><tr><th>" + value.ticker + "</tr></th></table></a>");
+        $("#list").append("<a style='color: inherit;' target='_blank' href='https://adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(0, 0, 0, 0.4)' ><tr><th>" + value.ticker + "</tr></th></table></a>");
     });        
 });
 </script>

@@ -5,6 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Home - Cardano SPA - Single Pool Alliance</title>
+    <link rel="icon" type="image/png" sizes="2000x2000" href="/assets/img/spa%20logo.png">
+    <link rel="icon" type="image/png" sizes="2000x2000" href="/assets/img/spa%20logo.png">
+    <link rel="icon" type="image/png" sizes="2000x2000" href="/assets/img/spa%20logo.png">
+    <link rel="icon" type="image/png" sizes="2000x2000" href="/assets/img/spa%20logo.png">
+    <link rel="icon" type="image/png" sizes="2000x2000" href="/assets/img/spa%20logo.png">
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="/assets/fonts/ionicons.min.css">
@@ -14,22 +19,20 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="/index.html">SPA</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse"
-                id="navcol-1">
+        <div class="container"><a class="navbar-brand logo" href="/index.html"><img src="/assets/img/spa%20logo.png" style="width: 68px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link active" href="/index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/about-us.html">Why SPA</a></li>
                     <li class="nav-item"><a class="nav-link" href="/contact-us.html">Contact Us</a></li>
                 </ul>
-            </div>
+        </div>
         </div>
     </nav>
     <main class="page landing-page">
         <section class="d-lg-flex flex-column clean-block clean-hero" style="background: url(&quot;/assets/img/blockchain-network-810x476.jpg&quot;) no-repeat;color: rgba(53,109,194,0.69);background-size: cover;">
-            <div class="text">
-                <h2>Cardano Single Pool Alliance</h2>
-            </div>
+            <div class="text"><img src="/assets/img/spa%20logo%20full%20new.png" style="width: 668px;"></div>
             <div class="text"><script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 function shuffle (array) {
@@ -59,7 +62,23 @@ $.getJSON('https://raw.githubusercontent.com/SinglePoolAlliance/Registration/mas
     $.each(data, function(key, value) {         $.getJSON('https://js.adapools.org/pools/' +  value.poolId + '/summary.json',
             function(saturation) {      
                 console.log(saturation)
-                $("#list").append("<a style='color: inherit;' target='_blank' href='https://adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(0, 0, 0, 0.4)' ><tr><th>" + value.ticker + "</tr></th><tr><td>" + Math.round(saturation.data.saturated * 100) + "%</tr></td></table></a>");
+                   if (saturation.data.saturated >= 0 && saturation.data.saturated <= 0.6)      
+                        {
+                            $("#list").append("<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(1, 152, 117, 0.4)' ><tr><th>" + value.ticker + "</tr></th><tr><td>" + Math.round(saturation.data.saturated * 100) + "%</tr></td></table></a>");
+                        }
+        if (saturation.data.saturated > 0.6 && saturation.data.saturated <= 0.8)      
+                        {
+                            $("#list").append("<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(225, 165, 255, 0.4)' ><tr><th>" + value.ticker + "</tr></th><tr><td>" + Math.round(saturation.data.saturated * 100) + "%</tr></td></table></a>");
+                        } 
+        if (saturation.data.saturated > 0.8 && saturation.data.saturated <= 0.95)      
+                        {
+                            $("#list").append("<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(225, 165, 0, 0.4)' ><tr><th>" + value.ticker + "</tr></th><tr><td>" + Math.round(saturation.data.saturated * 100) + "%</tr></td></table></a>");
+                        }
+        if (saturation.data.saturated > 0.95 && saturation.data.saturated <= 100)      
+                        {
+                            $("#list").append("<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(255, 255, 255, 0.4)' ><tr><th>" + value.ticker + "</tr></th><tr><td>" + Math.round(saturation.data.saturated * 100) + "%</tr></td></table></a>");
+                        }
+                                
         });   
     });        
 });

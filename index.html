@@ -64,19 +64,19 @@ $.getJSON('https://raw.githubusercontent.com/SinglePoolAlliance/Registration/mas
                 console.log(saturation)
                    if (saturation.data.saturated >= 0 && saturation.data.saturated <= 0.6)      
                         {
-                            $("#list").append("<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(1, 152, 117, 0.4)' ><tr><th>" + value.ticker + "</tr></th><tr><td>" + Math.round(saturation.data.saturated * 100) + "%</tr></td></table></a>");
+                            $("#list").append("<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(1, 152, 117, 0.55)' ><tr><th>" + value.ticker + "</tr></th><tr><td>" + Math.round(saturation.data.saturated * 100) + "%</tr></td></table></a>");
                         }
         if (saturation.data.saturated > 0.6 && saturation.data.saturated <= 0.8)      
                         {
-                            $("#list").append("<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(225, 165, 255, 0.4)' ><tr><th>" + value.ticker + "</tr></th><tr><td>" + Math.round(saturation.data.saturated * 100) + "%</tr></td></table></a>");
+                            $("#list").append("<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(225, 165, 255, 0.55)' ><tr><th>" + value.ticker + "</tr></th><tr><td>" + Math.round(saturation.data.saturated * 100) + "%</tr></td></table></a>");
                         } 
         if (saturation.data.saturated > 0.8 && saturation.data.saturated <= 0.95)      
                         {
-                            $("#list").append("<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(225, 165, 0, 0.4)' ><tr><th>" + value.ticker + "</tr></th><tr><td>" + Math.round(saturation.data.saturated * 100) + "%</tr></td></table></a>");
+                            $("#list").append("<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(225, 165, 0, 0.55)' ><tr><th>" + value.ticker + "</tr></th><tr><td>" + Math.round(saturation.data.saturated * 100) + "%</tr></td></table></a>");
                         }
         if (saturation.data.saturated > 0.95 && saturation.data.saturated <= 100)      
                         {
-                            $("#list").append("<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(255, 255, 255, 0.4)' ><tr><th>" + value.ticker + "</tr></th><tr><td>" + Math.round(saturation.data.saturated * 100) + "%</tr></td></table></a>");
+                            $("#list").append("<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + value.poolId+ "' ><table style='margin: 5px; height: 70px; width: 70px; border-style: outset ; border-color: #1873db; font-family:  Times New Roman; background: rgba(255, 0, 0, 0.55)' ><tr><th>" + value.ticker + "</tr></th><tr><td>" + Math.round(saturation.data.saturated * 100) + "%</tr></td></table></a>");
                         }
                                 
         });   

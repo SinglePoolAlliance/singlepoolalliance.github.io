@@ -23,16 +23,13 @@ function shuffleArray(array) {
     return array;
 }
 
-// Exposes the pools as a chacheable object for use anywhere
-function getCachedPools(success)
-{
-    if (_poolCache == null)
-    {
+// Exposes the pools as a cacheable object for use anywhere
+function getCachedPools(success) {
+    if (_poolCache == null) {
         // Promise-interface, so make sure to call success separately in else logic
-        $.getJSON(_poolURL, function(data) {
+        $.getJSON(_poolURL, function (data) {
             _poolCache = data;
-            if (_poolCache == null)
-            {
+            if (_poolCache == null) {
                 // Something went wrong
                 console.log("_poolCache is null, are you able to reach \'" + _poolURL + "\'?");
             }
@@ -45,8 +42,7 @@ function getCachedPools(success)
 }
 
 // Returns a link with a stylized ticker box colored depending on saturation
-function poolTicker(poolExtData)
-{
+function poolTicker(poolExtData, hexId, ticker) {
     // Honestly, this should come from a .css
     var font = "sans-serif";
     var border = "border-radius: 8px; border-style: hidden;"
@@ -54,64 +50,62 @@ function poolTicker(poolExtData)
     var height = "70px";
     var margin = "5px";
 
-    if (poolExtData.data.saturated >= 0 && poolExtData.data.saturated <= 0.6)      
-    {
-        return "<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + poolExtData.data.pool_id + "'>" +
+    if (poolExtData.data.saturation >= 0 && poolExtData.data.saturation <= 0.6) {
+        return "<a style='color:  inherit;' target='_blank' href='https://cexplorer.io/pool/" + poolExtData.data.pool_id + "'>" +
             `<table style='margin: ${margin}; height: ${height}; width: ${width}; ${border} font-family: ${font}; background: rgba(1, 152, 117, 1)'>` +
-                "<tr><th>" + poolExtData.data.db_ticker + "</tr></th>" +
-                "<tr><td>" + (poolExtData.data.saturated * 100).toFixed(2) + "%</tr></td>" +
+            "<tr><th>" + ticker + "</tr></th>" +
+            "<tr><td>" + (poolExtData.data.saturation * 100).toFixed(2) + "%</tr></td>" +
             "</table></a>";
     }
-    if (poolExtData.data.saturated > 0.6 && poolExtData.data.saturated <= 0.8)      
-    {
-        return "<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + poolExtData.data.pool_id + "'>" +
-                `<table style='margin: ${margin}; height: ${height}; width: ${width}; ${border} font-family: ${font}; background: rgba(225, 165, 255, 1)'>` +
-                "<tr><th>" + poolExtData.data.db_ticker + "</tr></th>" +
-                "<tr><td>" + (poolExtData.data.saturated * 100).toFixed(2) + "%</tr></td>" +
-            "</table></a>";
-    } 
-    if (poolExtData.data.saturated > 0.8 && poolExtData.data.saturated <= 0.95)      
-    {
-        return "<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + poolExtData.data.pool_id + "'>" +
-                `<table style='margin: ${margin}; height: ${height}; width: ${width}; ${border} font-family: ${font}; background: rgba(225, 165, 0, 1)'>` +
-                "<tr><th>" + poolExtData.data.db_ticker + "</tr></th>" + 
-                "<tr><td>" + (poolExtData.data.saturated * 100).toFixed(2) + "%</tr></td>" +
+    if (poolExtData.data.saturation > 0.6 && poolExtData.data.saturation <= 0.8) {
+        return "<a style='color:  inherit;' target='_blank' href='https://cexplorer.io/pool/" + poolExtData.data.pool_id + "'>" +
+            `<table style='margin: ${margin}; height: ${height}; width: ${width}; ${border} font-family: ${font}; background: rgba(225, 165, 255, 1)'>` +
+            "<tr><th>" + ticker + "</tr></th>" +
+            "<tr><td>" + (poolExtData.data.saturation * 100).toFixed(2) + "%</tr></td>" +
             "</table></a>";
     }
-    if (poolExtData.data.saturated > 0.95 && poolExtData.data.saturated <= 100)      
-    {
-        return "<a style='color:  inherit;' target='_blank' href='https://adapools.org/pool/" + poolExtData.data.pool_id + "'>" + 
-                `<table style='margin: ${margin}; height: ${height}; width: ${width}; ${border} font-family: ${font}; background: rgba(255, 0, 0, 1)'>` +
-                "<tr><th>" + poolExtData.data.db_ticker + "</tr></th>" +
-                "<tr><td>" + (poolExtData.data.saturated * 100).toFixed(2) + "%</tr></td>" +
+    if (poolExtData.data.saturation > 0.8 && poolExtData.data.saturation <= 0.95) {
+        return "<a style='color:  inherit;' target='_blank' href='https://cexplorer.io/pool/" + poolExtData.data.pool_id + "'>" +
+            `<table style='margin: ${margin}; height: ${height}; width: ${width}; ${border} font-family: ${font}; background: rgba(225, 165, 0, 1)'>` +
+            "<tr><th>" + ticker + "</tr></th>" +
+            "<tr><td>" + (poolExtData.data.saturation * 100).toFixed(2) + "%</tr></td>" +
             "</table></a>";
     }
-
-    return "<div> Missing data </div>";
+    if (poolExtData.data.saturation > 0.95 && poolExtData.data.saturation <= 100) {
+        return "<a style='color:  inherit;' target='_blank' href='https://cexplorer.io/pool/" + poolExtData.data.pool_id + "'>" +
+            `<table style='margin: ${margin}; height: ${height}; width: ${width}; ${border} font-family: ${font}; background: rgba(255, 0, 0, 1)'>` +
+            "<tr><th>" + ticker + "</tr></th>" +
+            "<tr><td>" + (poolExtData.data.saturation * 100).toFixed(2) + "%</tr></td>" +
+            "</table></a>";
+    }
+    return "<div>\"" + ticker + "\"</div>"
 }
 
-function randPoolTicker(element)
-{
-    getCachedPools(function(pools) {
+function randPoolTicker(element) {
+    getCachedPools(function (pools) {
         // Select random pool
-        randPool = pools[Math.floor(Math.random()*pools.length)];
-
-        $.getJSON('https://js.adapools.org/pools/' + randPool.poolId + '/summary.json', function(poolExtData) {
-            element.html(poolTicker(poolExtData));
+        randPool = pools[Math.floor(Math.random() * pools.length)];
+        $.getJSON('https://js.cexplorer.io/api-static/pool/hex2bech.json', function (hexToBech) {
+            let bechID = hexToBech.data[randPool.poolId];
+            // element.html(something);
+            $.getJSON('https://js.cexplorer.io/api-static/pool/' + bechID + '.json', function (poolExtData) {
+                element.html(poolTicker(poolExtData, randPool.poolId, randPool.ticker));
+            });
         });
     });
 }
 
-function populatePoolTickersRandomly(element)
-{
-    getCachedPools(function(pools) {
+function populatePoolTickersRandomly(element) {
+    getCachedPools(function (pools) {
         // Shuffle pools randomly
         shuffledPools = shuffleArray(pools);
-
-        $.each(shuffledPools, function(key, pool) {
-            $.getJSON('https://js.adapools.org/pools/' + pool.poolId + '/summary.json', function(poolExtData) {
-                element.append(poolTicker(poolExtData));
-            });   
+        $.getJSON('https://js.cexplorer.io/api-static/pool/hex2bech.json', function (hexToBech) {
+            $.each(shuffledPools, function (key, pool) {
+                let bechID = hexToBech.data[pool.poolId];
+                $.getJSON('https://js.cexplorer.io/api-static/pool/' + bechID + '.json', function (poolExtData) {
+                    element.append(poolTicker(poolExtData, pool.poolId, pool.ticker));
+                });
+            });
         });
     });
 }
